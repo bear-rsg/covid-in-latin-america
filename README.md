@@ -1,13 +1,7 @@
-# RSG Django Template
+# Social Media Literary Responses to Covid-19 in Latin America
 
-This project is a Django-based website created by the Research Software Group. This is our template for all new Django projects.
-When you make a project please mention (in a git commit?) which version of the template project you used - E.g. "Based on django-template commit 8asde872"
+This project is a Django-based website created by the Research Software Group for the "Social Media Literary Responses to Covid-19 in Latin America" research project at the University of Birmingham, UK.
 
-## Using this as a template to start up a new project
-
-* Fork this template project (just click "fork" in GitLab)
-* Change the places it talks about being a template project into your own project (e.g. name) and send a merge request to get the changes merged *in your new repository*.
-* We would not normally expect you to pull any new changes from the template into your fork, or push any changes back. There may be exceptions to this though.
 
 ## Getting Started
 
