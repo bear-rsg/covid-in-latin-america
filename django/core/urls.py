@@ -6,8 +6,6 @@ from django.conf import settings
 urlpatterns = [
     # Custom apps
     path('', include('general.urls')),
-    # path('data/', include('researchdata.urls')),
-
     # Django admin
     path('dashboard/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
