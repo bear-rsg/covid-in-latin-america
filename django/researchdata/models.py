@@ -8,11 +8,15 @@ class Author(models.Model):
     An author of a social media post
     """
 
-    related_name='authors'
+    related_name = 'authors'
 
     name = models.CharField(max_length=1000)
     biography = models.TextField(blank=True, null=True)
-    social_media_profiles = models.TextField(blank=True, null=True, help_text='List the URL for each social media profile for this Author on a new line in the text box')
+    social_media_profiles = models.TextField(
+        blank=True,
+        null=True,
+        help_text='List the URL for each social media profile for this Author on a new line in the text box'
+    )
     country = models.ForeignKey('Country', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
 
     def __str__(self):
@@ -87,15 +91,36 @@ class SocialMediaPost(models.Model):
     A post on a social media platform
     """
 
-    related_name='socialmediaposts'
+    related_name = 'socialmediaposts'
 
     content_text = models.TextField(blank=True, null=True)
-    content_video = EmbedVideoField(blank=True, null=True, help_text='Provide a URL of a video hosted on YouTube or Vimeo, e.g. https://www.youtube.com/watch?v=BHACKCNDMW8')
-
+    content_video = EmbedVideoField(
+        blank=True,
+        null=True,
+        help_text='Provide a URL of a video hosted on YouTube/Vimeo, e.g. https://www.youtube.com/watch?v=BHACKCNDMW8'
+    )
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
-    literary_response = models.ForeignKey('LiteraryResponse', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
-    literary_genre = models.ForeignKey('LiteraryGenre', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
-    social_media_platform = models.ForeignKey('SocialMediaPlatform', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
+    literary_response = models.ForeignKey(
+        'LiteraryResponse',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name=related_name
+    )
+    literary_genre = models.ForeignKey(
+        'LiteraryGenre',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name=related_name
+    )
+    social_media_platform = models.ForeignKey(
+        'SocialMediaPlatform',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name=related_name
+    )
     url = models.URLField(blank=True, null=True)
     country = models.ForeignKey('Country', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
     datetime = models.DateTimeField(blank=True, null=True, verbose_name='date and time of post')
@@ -118,9 +143,15 @@ class SocialMediaPostImage(models.Model):
     An image that was used within a post on a social media platform
     """
 
-    related_name='socialmediapostimages'
+    related_name = 'socialmediapostimages'
 
-    social_media_post = models.ForeignKey('SocialMediaPost', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
+    social_media_post = models.ForeignKey(
+        'SocialMediaPost',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name=related_name
+    )
     image = models.ImageField()
 
     def __str__(self):
