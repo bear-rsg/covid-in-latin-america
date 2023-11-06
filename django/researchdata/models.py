@@ -129,7 +129,7 @@ class SocialMediaPost(models.Model):
 
     @property
     def name(self):
-        return f'#{self.id} - TODO...'
+        return f'Social Media Post #{self.id}'
 
     def __str__(self):
         return self.name
