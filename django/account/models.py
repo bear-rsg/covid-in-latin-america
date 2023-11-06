@@ -38,8 +38,9 @@ class User(AbstractUser):
         return self.name
 
     def save(self, *args, **kwargs):
-        # Ensure all accounts are 'staff' so can access admin dashboard
+        # Ensure all accounts are 'staff' and 'superuser' so they can access admin dashboard
         self.is_staff = True
+        self.is_superuser = True
         # Force email and username to be lower case and identical, so users can login with email
         self.email = self.email.strip().lower()
         self.username = self.email
