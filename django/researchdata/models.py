@@ -130,7 +130,7 @@ class SocialMediaPost(models.Model):
     url = models.URLField(blank=True, null=True)
     country = models.ForeignKey('Country', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
 
-    date_of_post = models.DateTimeField(blank=True, null=True)
+    date_of_post = models.DateField(blank=True, null=True)
     time_of_post = models.TimeField(blank=True, null=True)
     date_time_other = models.CharField(
         max_length=1000,
