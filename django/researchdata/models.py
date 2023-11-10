@@ -137,7 +137,7 @@ class SocialMediaPost(models.Model):
         blank=True,
         null=True,
         verbose_name='date and time of post (other)',
-        help_text="If you only have limited date/time information that doesn't fit into the above fields, please add it here as free text"
+        help_text="Add free text data about date/time if not suitable in above fields"
     )
 
     notes_public = models.TextField(

@@ -115,7 +115,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# CKEditor 
+# CKEditor
 # Configuration
 # For full list of configurations, see: https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
 # For full list of toolbar buttons, see: https://ckeditor.com/latest/samples/toolbarconfigurator/index.html#advanced
@@ -124,27 +124,37 @@ CKEDITOR_CONFIGS = {
         'toolbar': [
             {
                 'name': 'styles',
-                'items': [ 'Format', '-', 'TextColor', 'BGColor', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript' ]
+                'items': [
+                    'TextColor', 'BGColor', 'Bold', 'Italic', 'Underline', 'Strike',
+                    '-',
+                    'Subscript', 'Superscript'
+                ]
             },
             {
                 'name': 'clipboard',
-                'items': [ 'Undo', 'Redo' ]
+                'items': ['Undo', 'Redo']
             },
             {
                 'name': 'paragraph',
-                'items': [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ]
+                'items': [
+                    'NumberedList', 'BulletedList',
+                    '-',
+                    'Outdent', 'Indent',
+                    '-',
+                    'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'
+                ]
             },
             {
                 'name': 'links',
-                'items': [ 'Link', 'Unlink', 'Anchor' ]
+                'items': ['Link', 'Unlink', 'Anchor']
             },
             {
                 'name': 'editing',
-                'items': [ 'Find', '-', 'Scayt' ]
+                'items': ['Find', '-', 'Scayt']
             },
             {
                 'name': 'views',
-                'items': [ 'Source', 'Maximize' ]
+                'items': ['Source', 'Maximize']
             }
         ],
         'format_tags': 'h2;h3;h4;h5;p',
