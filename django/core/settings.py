@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     # 3rd Party
+    'ckeditor',
     'embed_video',
     'debug_toolbar',
     # Custom apps
@@ -112,6 +113,68 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/latest/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# CKEditor
+# Configuration
+# For full list of configurations, see: https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
+# For full list of toolbar buttons, see: https://ckeditor.com/latest/samples/toolbarconfigurator/index.html#advanced
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            {
+                'name': 'styles',
+                'items': [
+                    'TextColor', 'BGColor', 'Bold', 'Italic', 'Underline', 'Strike',
+                    '-',
+                    'Subscript', 'Superscript'
+                ]
+            },
+            {
+                'name': 'clipboard',
+                'items': ['Undo', 'Redo']
+            },
+            {
+                'name': 'paragraph',
+                'items': [
+                    'NumberedList', 'BulletedList',
+                    '-',
+                    'Outdent', 'Indent',
+                    '-',
+                    'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'
+                ]
+            },
+            {
+                'name': 'links',
+                'items': ['Link', 'Unlink', 'Anchor']
+            },
+            {
+                'name': 'editing',
+                'items': ['Find', '-', 'Scayt']
+            },
+            {
+                'name': 'views',
+                'items': ['Source', 'Maximize']
+            }
+        ],
+        'format_tags': 'h2;h3;h4;h5;p',
+        'tabSpaces': 4,
+        'height': '30vh',
+        'width': '100%',
+        'allowedContent': True,
+        'entities_greek': False,
+        'entities_latin': False,
+        'scayt_autoStartup': True,
+        'scayt_sLang': 'en_GB',
+        'uiColor': '#FFFFFF',
+        'language': 'en',
+        'defaultLanguage': 'en',
+        'removePlugins': ','.join([
+            'elementspath',
+        ]),
+        'versionCheck': False,
+    }
+}
 
 
 # Import local_settings.py

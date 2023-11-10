@@ -72,6 +72,14 @@ def insert_data_social_media_platform(apps, schema_editor):
         {
             'name': 'LinkedIn',
             'url': 'https://www.linkedin.com'
+        },
+        {
+            'name': 'YouTube',
+            'url': 'https://www.youtube.com'
+        },
+        {
+            'name': 'WhatsApp',
+            'url': 'https://www.whatsapp.com'
         }
     ]:
         models.SocialMediaPlatform.objects.create(**obj)
