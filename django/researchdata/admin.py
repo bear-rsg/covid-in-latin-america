@@ -125,29 +125,30 @@ class SocialMediaPostAdminView(GenericAdminView):
 
     list_display = ('id',
                     'name',
-                    'author',
                     'literary_response',
-                    'literary_genre',
                     'social_media_platform',
                     'country',
-                    'datetime')
-    list_select_related = ('author',
-                           'literary_response',
-                           'literary_genre',
+                    'date_of_post',
+                    'time_of_post',
+                    'published')
+    list_select_related = ('literary_response',
                            'social_media_platform',
                            'country')
     list_display_links = ('id', 'name',)
     list_filter = ('published',
                    'literary_response',
-                   'literary_genre',
+                   'literary_genres',
                    'social_media_platform',
                    'country')
-    search_fields = ('content_text',
-                     'author__name',
+    search_fields = ('title',
+                     'content_text',
+                     'authors__name',
                      'country__name',
                      'literary_response__name',
-                     'literary_genre__name',
-                     'social_media_platform__name')
+                     'literary_genres__name',
+                     'social_media_platform__name',
+                     'notes_public',
+                     'notes_admin')
     actions = (publish, unpublish)
     inlines = (SocialMediaPostImageTabularInline,)
 

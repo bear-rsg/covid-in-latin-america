@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.functions import Upper
 from embed_video.fields import EmbedVideoField
+from ckeditor.fields import RichTextField
 
 
 class Author(models.Model):
@@ -93,22 +94,27 @@ class SocialMediaPost(models.Model):
 
     related_name = 'socialmediaposts'
 
-    content_text = models.TextField(blank=True, null=True)
+    title = models.CharField(max_length=1000, blank=True, null=True)
+    content_text = RichTextField(blank=True, null=True)
     content_video = EmbedVideoField(
         blank=True,
         null=True,
         help_text='Provide a URL of a video hosted on YouTube/Vimeo, e.g. https://www.youtube.com/watch?v=BHACKCNDMW8'
     )
-    author = models.ForeignKey('Author', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
+    authors = models.ManyToManyField(
+        'Author',
+        blank=True,
+        related_name=related_name,
+        verbose_name='author(s)'
+    )
+    literary_genres = models.ManyToManyField(
+        'LiteraryGenre',
+        blank=True,
+        related_name=related_name,
+        verbose_name='literary genre(s)'
+    )
     literary_response = models.ForeignKey(
         'LiteraryResponse',
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-        related_name=related_name
-    )
-    literary_genre = models.ForeignKey(
-        'LiteraryGenre',
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
@@ -123,13 +129,35 @@ class SocialMediaPost(models.Model):
     )
     url = models.URLField(blank=True, null=True)
     country = models.ForeignKey('Country', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
-    datetime = models.DateTimeField(blank=True, null=True, verbose_name='date and time of post')
+
+    date_of_post = models.DateTimeField(blank=True, null=True)
+    time_of_post = models.TimeField(blank=True, null=True)
+    date_time_other = models.CharField(
+        max_length=1000,
+        blank=True,
+        null=True,
+        verbose_name='date and time of post (other)',
+        help_text="If you only have limited date/time information that doesn't fit into the above fields, please add it here as free text"
+    )
+
+    notes_public = models.TextField(
+        blank=True,
+        null=True,
+        help_text='These notes will be visible to all users on the public website',
+        verbose_name='notes (public)'
+    )
+    notes_admin = models.TextField(
+        blank=True,
+        null=True,
+        help_text="These notes are only visible here to admins and won't be shared on the public website",
+        verbose_name='notes (admin)'
+    )
 
     published = models.BooleanField(default=False, help_text='Tick to make available on public website to all users')
 
     @property
     def name(self):
-        return f'Social Media Post #{self.id}'
+        return self.title if self.title else f'Social Media Post #{self.id}'
 
     def __str__(self):
         return self.name
