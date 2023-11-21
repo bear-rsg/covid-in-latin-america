@@ -101,5 +101,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(insert_data_country),
         migrations.RunPython(insert_data_literary_genre),
-        migrations.RunPython(insert_data_social_media_platform)
+        migrations.RunPython(insert_data_social_media_platform),
+        migrations.RunPython(insert_data_literary_response)
     ]
