@@ -11,7 +11,6 @@ def insert_data_country(apps, schema_editor):
     for name in [
         'Argentina',
         'Bolivia',
-        'Brazil',
         'Chile',
         'Colombia',
         'Costa Rica',
@@ -19,20 +18,14 @@ def insert_data_country(apps, schema_editor):
         'Dominican Republic',
         'Ecuador',
         'El Salvador',
-        'French Guiana',
-        'Guadeloupe',
         'Guatemala',
-        'Haiti',
         'Honduras',
-        'Martinique',
         'Mexico',
         'Nicaragua',
         'Panama',
         'Paraguay',
         'Peru',
         'Puerto Rico',
-        'Saint Barthélemy',
-        'Saint Martin',
         'Uruguay',
         'Venezuela'
     ]:
@@ -45,10 +38,24 @@ def insert_data_literary_genre(apps, schema_editor):
     """
 
     for name in [
-        'testimonial writing',
-        'survival poetry'
+        'Poetry',
+        'Short Fiction',
+        'Testimonial Writing',
     ]:
         models.LiteraryGenre.objects.create(name=name)
+
+
+def insert_data_literary_response(apps, schema_editor):
+    """
+    Inserts default data into the LiteraryResponse model
+    """
+
+    for name in [
+        'Pandemic Flash Fiction',
+        'Pandemic Testimonio',
+        'Survival Poetry'
+    ]:
+        models.LiteraryResponse.objects.create(name=name)
 
 
 def insert_data_social_media_platform(apps, schema_editor):
