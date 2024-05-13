@@ -122,7 +122,7 @@ class SocialMediaPost(models.Model):
         max_length=1000,
         blank=True,
         null=True,
-        help_text='If the video is in a format other than YouTube or Vimeo (so not applicable above) please include a URL to the video here',
+        help_text='If the video is in a format other than YouTube or Vimeo please include a URL to the video here',
         verbose_name='content video (other)'
     )
     authors = models.ManyToManyField(
