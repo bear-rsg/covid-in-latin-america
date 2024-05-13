@@ -4,9 +4,6 @@ from django.utils import timezone
 from . import models
 
 
-admin.site.site_header = 'Social Media Literary Responses to Covid-19 in Latin America'
-
-
 # Sections:
 # 1. Reusable Code
 # 2. Actions
@@ -125,6 +122,7 @@ class SocialMediaPostAdminView(GenericAdminView):
 
     list_display = ('id',
                     'name',
+                    'authors_list',
                     'literary_response',
                     'social_media_platform',
                     'country',
@@ -159,10 +157,11 @@ class AuthorAdminView(GenericAdminView):
     Customise the admin interface for Author model
     """
 
-    list_display = ('name', 'country')
+    list_display = ('name', 'country', 'posts_by_this_author_count')
     list_select_related = ('country',)
     list_filter = ('country',)
     search_fields = ('name', 'biography', 'country__name')
+    readonly_fields = ('posts_by_this_author',)
 
 
 # Register models that only need the GenericAdminView

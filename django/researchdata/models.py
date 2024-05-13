@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.functions import Upper
 from embed_video.fields import EmbedVideoField
 from ckeditor.fields import RichTextField
+from django.utils.safestring import mark_safe
 
 
 class Author(models.Model):
@@ -19,6 +20,20 @@ class Author(models.Model):
         help_text='List the URL for each social media profile for this Author on a new line in the text box'
     )
     country = models.ForeignKey('Country', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
+
+    @property
+    def posts_by_this_author_count(self):
+        return self.socialmediaposts.all().count()
+
+    @property
+    def posts_by_this_author(self):
+        """
+        Build HTML list of links to each post this author has written
+        """
+        links = []
+        for post in self.socialmediaposts.all():
+            links.append(f'<a href="/dashboard/researchdata/socialmediapost/{post.id}">{post}</a>')
+        return mark_safe("<br><br>".join(links)) if len(links) else '(No posts by this author)'
 
     def __str__(self):
         return self.name
@@ -154,6 +169,10 @@ class SocialMediaPost(models.Model):
     )
 
     published = models.BooleanField(default=False, help_text='Tick to make available on public website to all users')
+
+    @property
+    def authors_list(self):
+        return "; ".join([str(a) for a in self.authors.all()])
 
     @property
     def name(self):

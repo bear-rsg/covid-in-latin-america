@@ -119,6 +119,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Configuration
 # For full list of configurations, see: https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
 # For full list of toolbar buttons, see: https://ckeditor.com/latest/samples/toolbarconfigurator/index.html#advanced
+SILENCED_SYSTEM_CHECKS = ["ckeditor.W001"]
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': [
