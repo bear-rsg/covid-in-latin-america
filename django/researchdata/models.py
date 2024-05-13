@@ -17,7 +17,8 @@ class Author(models.Model):
     social_media_profiles = models.TextField(
         blank=True,
         null=True,
-        help_text='List the URL for each social media profile for this Author on a new line in the text box'
+        help_text='List the URL for each social media profile for this Author on a new line in the text box',
+        verbose_name='digital profiles'
     )
     country = models.ForeignKey('Country', on_delete=models.SET_NULL, blank=True, null=True, related_name=related_name)
 
@@ -100,6 +101,7 @@ class SocialMediaPlatform(models.Model):
 
     class Meta:
         ordering = [Upper('name'), 'id']
+        verbose_name = 'digital platform'
 
 
 class SocialMediaPost(models.Model):
@@ -115,6 +117,13 @@ class SocialMediaPost(models.Model):
         blank=True,
         null=True,
         help_text='Provide a URL of a video hosted on YouTube/Vimeo, e.g. https://www.youtube.com/watch?v=BHACKCNDMW8'
+    )
+    content_video_other = models.CharField(
+        max_length=1000,
+        blank=True,
+        null=True,
+        help_text='If the video is in a format other than YouTube or Vimeo (so not applicable above) please include a URL to the video here',
+        verbose_name='content video (other)'
     )
     authors = models.ManyToManyField(
         'Author',
@@ -183,6 +192,7 @@ class SocialMediaPost(models.Model):
 
     class Meta:
         ordering = ['id']
+        verbose_name = 'post'
 
 
 class SocialMediaPostImage(models.Model):
@@ -206,3 +216,4 @@ class SocialMediaPostImage(models.Model):
 
     class Meta:
         ordering = ['id']
+        verbose_name = 'post image'
