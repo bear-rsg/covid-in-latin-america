@@ -1,0 +1,586 @@
+
+/* ---------- General ---------- */
+
+html, body {
+    /* Color Variables */
+    --color-primary: #FA0907;
+    --color-primary-dark: #EF0201;
+    --color-primary-light: #FF5554;
+    --color-black: #101010;
+    --color-white: #f9f4de;
+    --color-red: #e13823;
+    --color-green: #27ae60;
+    --color-purple: #8e44ad;
+
+    font-family: 'Inter', 'Helvetica', sans-serif;
+    background: var(--color-black);
+    color: var(--color-white);
+    margin: 0;
+    font-weight: 300;
+}
+
+.display-small,
+.display-large {
+    display: none;
+}
+
+a,
+.link:not(.brokenlink) {
+    color: var(--color-primary);
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+a:hover,
+.link:not(.brokenlink):hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2em;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.3em;
+}
+
+#h1-primary,
+#h1-secondary {
+    color: var(--color-white);
+}
+
+#h1-separator {
+    color: var(--color-primary);
+    display: inline-block;
+    padding: 0 0.3em;
+}
+
+h2 {
+    font-size: 2.3em;
+    margin: 1.5em 0 0.8em 0;
+    line-height: 1em;
+    font-weight: 700;
+    padding: 0.1em 0;
+    border-bottom: 0.2em solid var(--color-primary);
+    width: fit-content;
+}
+
+h3 {
+    font-size: 1.8em;
+    line-height: 1em;
+    font-weight: 600;
+    margin: 1.5em 0 0.5em 0;
+    padding: 0.1em 0;
+    border-bottom: 0.2em solid var(--color-primary);
+    width: fit-content;
+}
+
+h4 {
+    font-weight: 600;
+    line-height: 1em;
+    font-size: 1.4em;
+    padding: 1em 0 0.2em 0;
+}
+
+hr {
+    border-top: 0.4rem solid #121d29;
+    width: 9rem;
+    margin: 0.2em 0 1.3em 0;
+}
+
+dl {
+    display: block;
+    margin: 0.5em 0;
+}
+
+dt {
+    display: inline-block;
+    font-weight: bold;
+}
+
+dt::after {
+    content: ': ';
+}
+
+dd {
+    display: inline-block;
+    margin-left: 0.3em;
+}
+
+table {
+    text-overflow: auto;
+    width: 100%;
+}
+
+td {
+    padding: 0.2em;
+}
+
+p {
+    margin: 0.5em 0;
+    line-height: 1.7em;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0;
+    padding: 0.3em 1.3em 0.3em 0.3em;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    display: block;
+    border: 1px solid #BBB;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+    background-color: white;
+}
+
+select option {
+    color: black;
+}
+
+strong {
+    font-weight: 500;
+}
+
+em {
+    font-style: italic;
+}
+
+.clearfloat {
+    clear: both;
+}
+
+i.icon {
+    margin-right: 0.3em;
+    user-select: none;
+}
+
+.image-circle {
+    border-radius: 100%;
+    width: 13em;
+    max-width: 90%;
+    display: block;
+    margin: 1em auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 0;
+    height: 0;
+    margin: 7em auto;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.pdf-viewer-full {
+    width: 95%;
+    height: calc(100vh - 4em);
+    display: block;
+    margin: 1em auto;
+    overflow: auto;
+}
+
+.pdf-viewer-download {
+    clear: both;
+    background: var(--color-primary);
+    color: white;
+    padding: 0.5em 1em;
+    border-radius: 0.2em;
+    display: block;
+    width: fit-content;
+    margin: 1em auto 2em auto;
+}
+
+.pdf-viewer-download:hover {
+    color: white;
+}
+
+.rtl {
+    text-align: right;
+}
+
+/* ---------- Forms ---------- */
+
+form.full-form p {
+    margin: 1em 0 2em 0;
+}
+
+form.full-form label,
+form.full-form textarea,
+form.full-form input[type=text],
+form.full-form input[type=url],
+form.full-form input[type=email],
+form.full-form input[type=password],
+form.full-form input[type=number] {
+    display: block;
+    width: 100%;
+}
+
+form.full-form textarea {
+    height: 4em;
+}
+
+form.full-form label {
+    margin-bottom: 0;
+}
+
+form.full-form ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+form.full-form .helptext {
+    color: #505050;
+    font-size: 0.85em;
+    font-style: italic;
+    margin: 0.2em;
+    display: block;
+}
+
+form.full-form .errorlist {
+    color: var(--color-red);
+}
+
+button {
+    border-radius: 0.4em;
+}
+
+form.full-form button[type=submit] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    padding: 0.7em;
+    margin: 1em auto;
+    background: var(--color-primary);
+    color: white;
+    width: 100%;
+}
+
+form.full-form button[type=submit]:hover {
+    opacity: 0.9;
+}
+
+.full-form-footer-links a {
+    display: block;
+    padding: 0.5em;
+    margin: 2em auto;
+    text-align: center;
+    background: #DDD;
+    border-radius: 0.4em;
+    color: #404040;
+}
+
+.full-form-footer-links a:hover {
+    opacity: 0.85;
+}
+
+form.full-form button[type=submit].button-danger {
+    background: var(--color-red);
+}
+
+.field-required.field-invalid {
+    border: 2px solid var(--color-red);
+}
+
+.validationmsg {
+    color: var(--color-red);
+    font-size: 0.9em;
+}
+
+/* ---------- Navigation ---------- */
+
+nav.navbar {
+    background: #101010;
+    color: var(--color-white);
+    vertical-align: middle;
+    z-index: 950;
+    font-weight: 700;
+}
+
+.navbar-brand {
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.navbar-brand.hidden {
+    visibility: hidden;
+    width: 0;
+}
+
+.nav-link {
+    font-size: 1.05rem;
+    color: var(--color-white);
+    padding: 0.3em;
+}
+
+.nav-link:hover {
+    color: var(--color-white);
+}
+
+.nav-link.nav-link-persian {
+    font-size: 1.5em;
+    padding-top: 0.1em;
+}
+
+.dropdown-menu {
+    background: var(--color-white);
+    font-size: 1.09em;
+}
+
+.dropdown-item {
+    font-weight: 700;
+    padding: 0.5em 1em;
+    background: var(--color-white);
+    color: var(--color-primary);
+}
+
+.dropdown-item:hover,
+.dropdown-item:active {
+    background: var(--color-white);
+    color: var(--color-primary);
+}
+
+nav a:hover {
+    color: var(--color-white);
+}
+
+/* ---------- Main ---------- */
+
+main {
+    overflow-x: hidden;
+    position: relative;
+    padding-bottom: 5em;
+}
+
+main section {
+    padding: 0.5rem 0;
+}
+
+/* ---------- Welcome ---------- */
+
+#welcome-banner {
+    color: var(--color-white);
+    position: relative;
+}
+
+#welcome-banner-image {
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../images/welcome-banner-bg.jpg');
+    vertical-align: middle;
+}
+
+#welcome-banner-content {
+    font-weight: 700;
+    background-color: var(--color-black);
+    padding: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: fit-content;
+}
+
+#welcome-banner-content-title,
+#welcome-banner-content-tagline {
+    background: var(--color-black);
+    line-height: 1em;
+    letter-spacing: 0.05em;
+}
+
+#welcome-banner-content hr {
+    border-top: 1rem solid var(--color-primary);
+    width: 100%;
+    margin: 0.5rem 0 1.5rem 0;
+}
+
+#welcome-banner-proceed {
+    font-size: 3em;
+    position: absolute;
+    bottom: 0.8em;
+    left: calc(50% - 40px);
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    padding-top: 0.1em;
+    cursor: pointer;
+    line-height: 80px;
+    background: var(--color-primary);
+    color: var(--color-black)
+}
+
+#welcome-banner-proceed:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* ---------- Pages ---------- */
+
+#pages-editinadmin {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.8em;
+    background: var(--color-primary);
+    color: black;
+    font-weight: 600;
+    font-size: 1.1em;
+    border-radius: 0.5em;
+}
+
+#pages-editinadmin:hover {
+    text-decoration: none;
+    background: var(--color-primary-dark);
+    color: black;
+}
+
+#pages-editinadmin i {
+    margin-right: 0.4em;
+}
+
+#pages-mediaviewer {
+    position: fixed;
+    bottom: -61vh;
+    left: 50%;
+    width: 0;
+    min-height: 5em;
+    max-height: 60vh;
+    background: var(--color-primary);
+    border-radius: 1em;
+    transition: all 0.4s ease;
+    overflow: auto;
+}
+
+#pages-mediaviewer video {
+    max-width: 80%;
+    display: block;
+    margin: 0 auto 2em auto;
+}
+
+#pages-mediaviewer audio {
+    display: block;
+    margin: 0 auto 2em auto;
+}
+
+.pages-mediaviewer-close {
+    color: white;
+    font-size: 1.5em;
+    margin: 0.5em;
+    cursor: pointer;
+    width: fit-content;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+    background: var(--color-black);
+    color: #EEE;
+    padding: 4em 0;
+    margin-top: 5em;
+    text-align: center;
+}
+
+#footer-content-logos img {
+    height: 4em;
+    margin: 1em;
+}
+
+#footer-content-text {
+    margin-top: 2em;
+}
+
+footer p {
+    margin-top: 2em;
+    display: block;
+}
+
+footer a {
+    color: var(--color-primary);
+    opacity: 1;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: var(--color-primary);
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* ---------- Translation / Languages / i18n ---------- */
+
+#language-show {
+    z-index: 1000;
+    position: fixed;
+    bottom: 1.1em;
+    left: 0;
+    width: 1.5em;
+    height: 1.5em;
+    text-align: center;
+    font-size: 2.5em;
+    border-radius: 0 100% 100% 0;
+    background: #272727;
+    cursor: pointer;
+    padding-top: 0.5em;
+    user-select: none;
+}
+
+#language-show:hover {
+ background: var(--color-primary);
+}
+
+#language-popup {
+    position: fixed;
+    bottom: 2em;
+    left: -10em;
+    width: 10em;
+    background: #272727;
+    color: white;
+    padding: 1em 1em 0.2em 1em;
+    z-index: 1000;
+}
+
+#lang-options li {
+    padding-bottom: 0.8em;
+}
+
+#lang-options a {
+    color: white;
+}
+
+#lang-options a:hover {
+    text-decoration: none;
+}
+
+/* ---------- Error Pages ---------- */
+
+.errorpage-path {
+    font-weight: 500;
+}
+
+.errorpage-code {
+    margin-top: 3em;
+    font-size: 0.8em;
+}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block main %}
+
+<section id="welcome-banner">
+    <div id="welcome-banner-content">
+        <div id="welcome-banner-content-title">
+            {% translate 'ProjectTitlePrimary' %}
+        </div>
+        <hr>
+        <div id="welcome-banner-content-tagline">
+            {% translate 'ProjectTitleSecondary' %}
+        </div>
+    </div>
+    <div id="welcome-banner-image"></div>
+    <div id="welcome-banner-proceed">
+        <i class="fas fa-angle-down"></i>
+    </div>
+</section>
+
+<section id="welcome-content" class="container">
+    {# the following is content from the welcome Page object, so can be managed by user #}
+    {% include "pages/snippets/pages-content-by-language.html" with page=welcome_page_obj %}
+</section>
+
+{% include "pages/snippets/pages-media-viewer.html" %}
+
+<script>
+$(document).ready(function(){
+    // Include main pages js
+    {% include "pages/snippets/pages.js" %}
+
+    // Scroll down to main welcome section when clicking on the proceed button in the welcome banner
+    $('#welcome-banner-proceed').on('click', function(){
+        $('html,body').animate({ scrollTop: $('#welcome-content').offset().top - 50 }, 500); 
+    });
+});
+</script>
+
+{% endblock %}
