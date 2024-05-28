@@ -88,9 +88,8 @@ class FileUpload(models.Model):
     file = models.FileField(
         upload_to=get_upload_to,
         help_text="""
-        Ensure the name of the file you upload is unique and descriptive. Look at existing uploaded files to see the recommended naming convention.
-        <br>
-        E.g. instead of calling a file 'lesson1.wav' you should call it 'pcr__y1__michaelmasterm__lesson1.wav' to make sure it's unique and easier to find the file when browsing a list of all files.
+        Ensure the name of the file you upload is unique and descriptive.
+        <br>Look at existing uploaded files to see the recommended naming convention.
         """
     )
     meta_created_datetime = models.DateTimeField(default=timezone.now, verbose_name="created")
