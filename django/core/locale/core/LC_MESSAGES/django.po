@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-22 13:40+0100\n"
+"POT-Creation-Date: 2024-06-19 08:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,95 +16,67 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/settings.py:101
+#: core/settings.py:100
 msgid "English"
 msgstr ""
 
-#: core/settings.py:102
+#: core/settings.py:101
 msgid "Spanish"
-msgstr ""
-
-#: core/templates/admin/base_site.html:4
-msgid "Django site admin"
-msgstr ""
-
-#: core/templates/admin/base_site.html:7
-msgid "Django administration"
-msgstr ""
-
-#: core/templates/admin/base_site.html:15
-msgid "View site"
-msgstr ""
-
-#: core/templates/admin/base_site.html:18
-msgid "Download Data as Excel"
-msgstr ""
-
-#: core/templates/admin/base_site.html:21
-msgid "Change password"
-msgstr ""
-
-#: core/templates/admin/base_site.html:23
-msgid "Log out"
 msgstr ""
 
 #: core/templates/base.html:8
 msgid "ProjectTitle"
-msgstr "Literatura Viral: América Latina"
+msgstr ""
 
 #: core/templates/base.html:49
 msgid "ProjectTitlePrimary"
-msgstr "Literatura Viral"
+msgstr ""
 
 #: core/templates/base.html:49
 msgid "ProjectTitleSecondary"
-msgstr "América Latina"
+msgstr ""
 
 #: core/templates/base.html:63
 msgid "About"
-msgstr "Sobre el proyecto"
+msgstr ""
 
 #: core/templates/base.html:69
 msgid "Map"
-msgstr "Mapa"
+msgstr ""
 
 #: core/templates/base.html:75
 msgid "Team Members"
-msgstr "Quiénes somos"
+msgstr ""
 
 #: core/templates/base.html:81
 msgid "Publications"
-msgstr "Publicaciones"
+msgstr ""
 
 #: core/templates/base.html:87
 msgid "Contact Us"
-msgstr "Contacto"
+msgstr ""
 
 #: core/templates/base.html:93
 msgid "More Resources"
-msgstr "Otros recursos"
+msgstr ""
 
 #: core/templates/base.html:117
 msgid "Privacy"
-msgstr "Privacidad"
+msgstr ""
 
 #: core/templates/base.html:118
 msgid "Legal"
-msgstr "Legal"
+msgstr ""
 
 #: core/templates/base.html:119
 msgid "Freedom of Information"
-msgstr "Libertad de Información"
+msgstr ""
 
 #: core/templates/base.html:120
 msgid "Cookies"
-msgstr "Cookies"
+msgstr ""
 
 #: core/templates/base.html:121
 msgid "Accessibility"
-msgstr "Accesibilidad"
-
-#~ msgid "Team"
-#~ msgstr "Quiénes somos"
+msgstr ""

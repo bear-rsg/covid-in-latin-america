@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     # 3rd Party
     'ckeditor',
+    'ckeditor_uploader',
     'embed_video',
     'debug_toolbar',
     # Custom apps
@@ -170,6 +171,10 @@ CKEDITOR_CONFIGS = {
             {
                 'name': 'editing',
                 'items': ['Find', '-', 'Scayt']
+            },
+            {
+                'name': 'insert',
+                'items': ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
             },
             {
                 'name': 'views',

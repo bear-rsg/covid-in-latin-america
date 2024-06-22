@@ -60,7 +60,7 @@ h1 {
 
 h2 {
     font-size: 2.3em;
-    margin: 1.5em 0 0.8em 0;
+    margin: 1.5em auto 0.8em auto;
     line-height: 1em;
     font-weight: 700;
     padding: 0.1em 0;
@@ -221,6 +221,28 @@ i.icon {
     text-align: right;
 }
 
+#editinadmindashboardlink {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.8em;
+    background: var(--color-primary);
+    color: black;
+    font-weight: 600;
+    font-size: 1.1em;
+    border-radius: 0.5em;
+}
+
+#editinadmindashboardlink:hover {
+    text-decoration: none;
+    background: var(--color-primary-dark);
+    color: black;
+}
+
+#editinadmindashboardlink i {
+    margin-right: 0.4em;
+}
+
 /* ---------- Forms ---------- */
 
 form.full-form p {
@@ -316,7 +338,7 @@ nav.navbar {
     background: #101010;
     color: var(--color-white);
     vertical-align: middle;
-    z-index: 950;
+    z-index: 1001;
     font-weight: 700;
 }
 
@@ -417,6 +439,16 @@ main section {
     margin: 0.5rem 0 1.5rem 0;
 }
 
+#welcome-banner-content-tempmsg {
+    margin: 5em auto 0 auto;
+    padding: 1em;
+    font-size: 1.1em;
+    background-color: var(--color-primary);
+    color: black;
+    text-align: center;
+    width: 70%;
+}
+
 #welcome-banner-proceed {
     font-size: 3em;
     position: absolute;
@@ -437,29 +469,94 @@ main section {
     background-color: var(--color-primary-dark);
 }
 
-/* ---------- Pages ---------- */
+/* ---------- Maps ---------- */
 
-#pages-editinadmin {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    padding: 0.8em;
-    background: var(--color-primary);
-    color: black;
-    font-weight: 600;
-    font-size: 1.1em;
-    border-radius: 0.5em;
+.map-object {
+    width: 100%;
+    background: var(--color-black);
 }
 
-#pages-editinadmin:hover {
+.map-object-large {
+    height: calc(100vh - 6em);
+}
+
+.map-object-small {
+    height: 40vh;
+}
+
+div.leaflet-control-layers-expanded {
+    font-size: 1.3em;
+    background: var(--color-black);
+    color: white;
+}
+
+div.leaflet-control-layers-expanded label {
+    margin: 0.2em 0.5em;
+    cursor: pointer;
+}
+
+div.leaflet-control-layers-expanded input {
+    margin-right: 0.5em;
+    cursor: pointer;
+}
+
+.leaflet-popup-content-wrapper {
+    max-height: 20em;
+    overflow: scroll;
+    font-size: 1.3em;
+}
+
+#map-textbox {
+    font-size: 1.3em;
+    height: 30em;
+    width: 20em;
+    padding: 1em;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--color-white);
+    cursor: pointer;
+}
+
+#map-textbox.minimised {
+    height: 5em;
+}
+
+.map-popup {
+    text-align: center;
+    margin-bottom: 0.4em;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.map-popup-link {
+    display: block;
+    padding: 0.3em 0.5em;
+    border-bottom: 1px solid #DDD;
+    color: black;
+}
+
+.map-popup-link:hover,
+.map-popup-link:focus {
+    background: var(--color-white);
     text-decoration: none;
-    background: var(--color-primary-dark);
-    color: black;
 }
 
-#pages-editinadmin i {
-    margin-right: 0.4em;
+/* ---------- Post Detail ---------- */
+
+#post-detail-metadata div {
+    margin: 0.5em 0;
 }
+
+#post-detail-metadata div label {
+    font-weight: bold;
+    margin-right: 0.2em;
+}
+
+#post-detail-content {
+    margin: 3em 0;
+}
+
+/* ---------- Pages ---------- */
 
 #pages-mediaviewer {
     position: fixed;
@@ -504,8 +601,8 @@ footer {
 }
 
 #footer-content-logos img {
-    height: 4em;
-    margin: 1em;
+    height: 3.5em;
+    margin: 1em 3em;
 }
 
 #footer-content-text {
@@ -532,7 +629,7 @@ footer a:hover {
 /* ---------- Translation / Languages / i18n ---------- */
 
 #language-show {
-    z-index: 1000;
+    z-index: 1002;
     position: fixed;
     bottom: 1.1em;
     left: 0;
@@ -548,7 +645,7 @@ footer a:hover {
 }
 
 #language-show:hover {
- background: var(--color-primary);
+    background: var(--color-primary);
 }
 
 #language-popup {
@@ -559,7 +656,7 @@ footer a:hover {
     background: #272727;
     color: white;
     padding: 1em 1em 0.2em 1em;
-    z-index: 1000;
+    z-index: 1002;
 }
 
 #lang-options li {

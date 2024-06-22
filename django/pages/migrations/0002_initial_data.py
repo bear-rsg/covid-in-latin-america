@@ -12,7 +12,7 @@ def create_pages(apps, schema_editor):
 
 <h3>Welcome</h3>
 <p>
-    Here's some content
+    Coming soon...
 </p>
 
 """.strip()
@@ -28,7 +28,7 @@ def create_pages(apps, schema_editor):
 
 <h2>About</h2>
 <p>
-    Here's some content
+    Coming soon...
 </p>
 
 """.strip()
@@ -44,7 +44,7 @@ def create_pages(apps, schema_editor):
 
 <h2>Team Members</h2>
 <p>
-    Here's some content
+    Coming soon...
 </p>
 
 """.strip()
@@ -60,7 +60,7 @@ def create_pages(apps, schema_editor):
 
 <h2>Publications</h2>
 <p>
-    Here's some content
+    Coming soon...
 </p>
 
 """.strip()
@@ -76,7 +76,7 @@ def create_pages(apps, schema_editor):
 
 <h2>Contact Us</h2>
 <p>
-    Here's some content
+    Coming soon...
 </p>
 
 """.strip()
@@ -92,7 +92,7 @@ def create_pages(apps, schema_editor):
 
 <h2>More Resources</h2>
 <p>
-    Here's some content
+    Coming soon...
 </p>
 
 """.strip()

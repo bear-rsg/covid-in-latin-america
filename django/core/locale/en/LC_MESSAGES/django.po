@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-16 11:28+0100\n"
+"POT-Creation-Date: 2024-06-22 13:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/settings.py:100
+#: core/settings.py:101
 msgid "English"
 msgstr ""
 
-#: core/settings.py:101
+#: core/settings.py:102
 msgid "Spanish"
+msgstr ""
+
+#: core/templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: core/templates/admin/base_site.html:7
+msgid "Django administration"
+msgstr ""
+
+#: core/templates/admin/base_site.html:15
+msgid "View site"
+msgstr ""
+
+#: core/templates/admin/base_site.html:18
+msgid "Download Data as Excel"
+msgstr ""
+
+#: core/templates/admin/base_site.html:21
+msgid "Change password"
+msgstr ""
+
+#: core/templates/admin/base_site.html:23
+msgid "Log out"
 msgstr ""
 
 #: core/templates/base.html:8
@@ -47,29 +71,37 @@ msgid "Map"
 msgstr ""
 
 #: core/templates/base.html:75
-msgid "Team"
+msgid "Team Members"
 msgstr ""
 
 #: core/templates/base.html:81
+msgid "Publications"
+msgstr ""
+
+#: core/templates/base.html:87
+msgid "Contact Us"
+msgstr ""
+
+#: core/templates/base.html:93
 msgid "More Resources"
 msgstr ""
 
-#: core/templates/base.html:103
+#: core/templates/base.html:117
 msgid "Privacy"
 msgstr ""
 
-#: core/templates/base.html:104
+#: core/templates/base.html:118
 msgid "Legal"
 msgstr ""
 
-#: core/templates/base.html:105
+#: core/templates/base.html:119
 msgid "Freedom of Information"
 msgstr ""
 
-#: core/templates/base.html:106
+#: core/templates/base.html:120
 msgid "Cookies"
 msgstr ""
 
-#: core/templates/base.html:107
+#: core/templates/base.html:121
 msgid "Accessibility"
 msgstr ""
