@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block main %}
+
+<div id="map-object" class="map-object map-object-large"></div>
+
+<!-- Map - using Leaflet -->
+<!-- Load Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<!-- Customise map on page -->
+<script>
+
+    // Create a map object
+    var map = L.map(
+        'map-object',
+        {
+            center: [0, -60],
+            zoom: 3,
+            scrollWheelZoom: false,
+            attributionControl: false,
+            zoomControl: false
+        }
+    );
+    // Add Zoom control to bottom right corner of map
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+    // Add tiles from MapBox to map object
+    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoibmlja255ciIsImEiOiJjajduNGptZWQxZml2MndvNjk4eGtwbDRkIn0.L0aWwfHlFJVGa-WOj7EHaA', {
+        maxZoom: 7,
+        minZoom: 2,
+        id: 'mapbox.dark',
+    }).addTo(map);
+
+    markers_array = []
+    lines_array = []
+
+    // Loop through countries in the database, populating the map with layers
+    {% for country in object_list %}
+
+        // Markers (Posts)
+        // Create the HTML to appear in the marker popup box
+        var markerPopupHtml = `<div class="map-popup">{{ country.name }}</div>`;
+        {% for post in country.socialmediaposts.all %}
+            {% if post.published %}
+                markerPopupHtml += `<a class="map-popup-link" href="{% url 'researchdata:post-detail' post.id %}" style="color: black;">{{ post.name | truncatechars:70 }}</a>`;
+            {% endif %}
+        {% endfor %}
+        // Add marker to array of markers (if it has posts)
+        {% if country.published_posts_in_this_country_count %}
+            markers_array.push(
+                L.marker([{{ country.latitude }}, {{ country.longitude }}]).bindPopup(markerPopupHtml)
+            );
+        {% endif %}
+
+        // Lines (Country Connections)
+        // Create the HTML to appear in the line popup box
+        {% for countryconnection in country.countryconnections_primary.all %}
+            {% if countryconnection.published %}
+                {% ifchanged countryconnection.country_secondary %}
+                    var linePopupHtml = `<div class="map-popup">{{ country.name }} and {{ countryconnection.country_secondary }}</div>`
+                {% endifchanged %}
+                linePopupHtml += `<a class="map-popup-link" href="{% url 'researchdata:countryconnection-detail' countryconnection.id %}" style="color: black;">{{ countryconnection.title | truncatechars:70 }}</a>`;
+                // Create polyline (line on map between two countries)
+                line = L.polyline(
+                    [
+                        [
+                            {{ countryconnection.country_primary.latitude }},
+                            {{ countryconnection.country_primary.longitude }}
+                        ],
+                        [
+                            {{ countryconnection.country_secondary.latitude }},
+                            {{ countryconnection.country_secondary.longitude }}
+                        ]
+                    ],
+                    {color: '#FA0907', color: '#930909'}
+                ).bindPopup(linePopupHtml);
+                // Change opacity style of line when user hovers over it
+                line.on('mouseover', function(e){ e.target.setStyle({color: '#E72322'}); });
+                line.on('mouseout', function(e){ e.target.setStyle({color: '#930909'}); });
+                // Add line to array of lines
+                lines_array.push(line);
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+    // Create layer groups
+    markers = L.layerGroup(markers_array);
+    lines = L.layerGroup(lines_array);
+    // Add markers to map by default (not lines)
+    markers.addTo(map);
+    // Set controls
+    L.control.layers(
+        null,
+        { "Posts": markers, "Connections": lines, },
+        { collapsed: false, }
+    ).addTo(map);
+
+    // Add a textbox to the top left corner of map
+    L.Control.textbox = L.Control.extend({
+        onAdd: function(map){
+            var text = L.DomUtil.create('div');
+            text.id = "map-textbox";
+            text.innerHTML = "{% translate 'Map Textbox Information' %}";
+            return text;
+        },
+        onRemove: function(map){}
+    });
+    L.control.textbox = function(opts){return new L.Control.textbox(opts);}
+    L.control.textbox({ position: 'topleft' }).addTo(map);
+
+    // 
+    $('#map-textbox').on('click', function(){
+        $(this).toggleClass('minimised');
+    });
+
+</script>
+
+{% endblock %}

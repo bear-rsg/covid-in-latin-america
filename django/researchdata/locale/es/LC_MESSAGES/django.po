@@ -1,0 +1,37 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-22 13:40+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: researchdata/templates/researchdata/map.html:105
+msgid "Map Textbox Information"
+msgstr ""
+"El mapa en esta página localiza algunas de las respuestas literarias a "
+"Covid-19 en América Latina que hemos identificado en redes sociales y otras "
+"plataformas digitales. Nos enfocamos en textos en español producidos o "
+"difundidos durante los dos primeros años de la crisis sanitaria. Pretendemos "
+"mostrar cómo se narró la pandemia en tiempo real, cuando estaba sucediendo; "
+"es decir, antes de que la inevitable visión en retrospectiva se estableciera "
+"y difuminara nuestra memoria colectiva. La opción “conexiones” rastrea el "
+"carácter transnacional de la vida literaria que se desarrolló vigorosamente —"
+"centrada en América Latina— cuando el virus se propagaba por todo el mundo. "
+"Como ocurre con la mayoría de los archivos, este repositorio digital está "
+"incompleto. Seguiremos añadiendo datos a medida que los encontremos y "
+"obtengamos permiso para mostrarlos. Lo incompleto del ejercicio, sin "
+"embargo, también funciona como un recordatorio poético del tiempo del "
+"Covid-19 y de los muchos espacios vacíos que dejó."

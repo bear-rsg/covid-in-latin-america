@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load static i18n embed_video_tags %}
+
+{% block main %}
+
+<div class="container">
+    <h2>{{ object.title }}</h2>
+
+    <div id="post-detail-content">
+        <!-- Content: Text -->
+        {% if object.content_text %}
+            <div>{{ object.content_text | safe }}</div>
+        {% endif %}
+        <!-- Content: Video -->
+        {% if object.content_video %}
+            <div class="video-container">
+                {% video object.content_video as content_video %}
+                    {% video content_video %}
+                {% endvideo %}
+            </div>
+        {% endif %}
+        <!-- Content: Video (other) -->
+        {% if object.content_video_other %}
+            <div class="video-container">
+                {% video object.content_video_other as content_video_other %}
+                    {% video content_video_other %}
+                {% endvideo %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div id="post-detail-metadata">
+        <h3>Post Details</h3>
+        <!-- Authors -->
+        {% if object.authors_list %}
+            <div>
+                <label>Author(s):</label>
+                <data>{{ object.authors_list }}</data>
+            </div>
+        {% endif %}
+        <!-- Social Media Platform -->
+        {% if object.social_media_platform %}
+            <div>
+                <label>Platform:</label>
+                <data>{{ object.social_media_platform }}</data>
+            </div>
+        {% endif %}
+        <!-- Literary Genres -->
+        {% if object.literary_genres_list %}
+            <div>
+                <label>Literary Genre(s):</label>
+                <data>{{ object.literary_genres_list }}</data>
+            </div>
+        {% endif %}
+        <!-- Literary Response -->
+        {% if object.literary_response %}
+            <div>
+                <label>Literary Response:</label>
+                <data>{{ object.literary_response }}</data>
+            </div>
+        {% endif %}
+        <!-- Country -->
+        {% if object.country %}
+            <div>
+                <label>Country:</label>
+                <data>{{ object.country }}</data>
+            </div>
+        {% endif %}
+        <!-- Date -->
+        {% if object.date_of_post %}
+            <div>
+                <label>Date:</label>
+                <data>{{ object.date_of_post }}</data>
+            </div>
+        {% endif %}
+        <!-- Time -->
+        {% if object.time_of_post %}
+            <div>
+                <label>Time:</label>
+                <data>{{ object.time_of_post }}</data>
+            </div>
+        {% endif %}
+        <!-- Date Time (Other) -->
+        {% if object.date_time_other %}
+            <div>
+                <label>Date/Time:</label>
+                <data>{{ object.date_time_other }}</data>
+            </div>
+        {% endif %}
+        <!-- Source URL -->
+        {% if object.url %}
+            <div>
+                <label>Source URL:</label>
+                <data><a href="{{ object.url }}" target="_blank">{{ object.url }}</a></data>
+            </div>
+        {% endif %}
+        <!-- Public Notes -->
+        {% if object.notes_public %}
+            <div>
+                <label>Notes:</label>
+                <data>{{ object.notes_public }}</data>
+            </div>
+        {% endif %}
+    </div>
+
+    <h3>Posts in {{ object.country }}</h3>
+    <div id="post-detail-map" class="map-object map-object-small"></div>
+</div>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'admin:researchdata_socialmediapost_change' object.id %}" id="editinadmindashboardlink">
+        <i class="fas fa-pencil-alt"></i> Edit Post
+    </a>
+{% endif %}
+
+<!-- Map - using Leaflet -->
+<!-- Load Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<!-- Customise map on page -->
+<script>
+
+    // Create a map object
+    var map = L.map(
+        'post-detail-map',
+        {
+            center: [{{ object.country.latitude }}, {{ object.country.longitude }}],
+            zoom: 3,
+            scrollWheelZoom: false,
+            attributionControl: false,
+            zoomControl: false
+        }
+    );
+    // Add Zoom control to bottom right corner of map
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+    // Add tiles from MapBox to map object
+    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoibmlja255ciIsImEiOiJjajduNGptZWQxZml2MndvNjk4eGtwbDRkIn0.L0aWwfHlFJVGa-WOj7EHaA', {
+        maxZoom: 7,
+        minZoom: 2,
+        id: 'mapbox.dark',
+    }).addTo(map);
+
+    // Markers/Posts
+    // Create the HTML to appear in the marker popup box
+    var markerPopupHtml = `<div class="map-popup">{{ object.country.name }}</div>`;
+    {% for post in object.country.socialmediaposts.all %}
+        {% if post.published %}
+            markerPopupHtml += `<a class="map-popup-link" href="{% url 'researchdata:post-detail' post.id %}" style="color: black;">{{ post.name | truncatechars:70 }}</a>`;
+        {% endif %}
+    {% endfor %}
+    // Add a marker for the country on the map with the necessary HTML in popup
+    L.marker([{{ object.country.latitude }}, {{ object.country.longitude }}]).bindPopup(markerPopupHtml).addTo(map);
+
+</script>
+
+{% endblock %}

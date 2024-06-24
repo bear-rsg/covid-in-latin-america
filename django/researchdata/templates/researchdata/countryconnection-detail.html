@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block main %}
+
+<div class="container">
+    <h2>{{ object.title }}</h2>
+
+    {% get_current_language as LANGUAGE_CODE %}
+    {% if LANGUAGE_CODE == 'es' and object.description_es %}
+        <div>{{ object.description_es | safe }}</div>
+    {% elif LANGUAGE_CODE == 'en' and object.description_en %}
+        <div>{{ object.description_en | safe }}</div>
+    {% endif %}
+
+    {% if object.authors_list %}
+        <div>
+            <h3>Authors</h3>
+            <div>{{ object.authors_list }}</div>
+        </div>
+    {% endif %}
+
+    {% if object.posts_list %}
+        <div>
+            <h3>Posts</h3>
+            <div>
+                {% for post in object.posts_published %}
+                    <div><a href="{% url 'researchdata:post-detail' post.id %}">{{ post }}</a></div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <h3>Connections Between {{ object.country_primary }} and {{ object.country_secondary }}</h3>
+    <div id="countryconnection-detail-map" class="map-object map-object-small"></div>
+</div>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'admin:researchdata_countryconnection_change' object.id %}" id="editinadmindashboardlink">
+        <i class="fas fa-pencil-alt"></i> Edit Event
+    </a>
+{% endif %}
+
+
+<!-- Map - using Leaflet -->
+<!-- Load Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<!-- Customise map on page -->
+<script>
+
+    // Create a map object
+    var map = L.map(
+        'countryconnection-detail-map',
+        {
+            center: [{{ object.latitude }}, {{ object.longitude }}],
+            zoom: 3,
+            scrollWheelZoom: false,
+            attributionControl: false,
+            zoomControl: false
+        }
+    );
+    // Add Zoom control to bottom right corner of map
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+    // Add tiles from MapBox to map object
+    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoibmlja255ciIsImEiOiJjajduNGptZWQxZml2MndvNjk4eGtwbDRkIn0.L0aWwfHlFJVGa-WOj7EHaA', {
+        maxZoom: 7,
+        minZoom: 2,
+        id: 'mapbox.dark',
+    }).addTo(map);
+
+    // Lines (Country Connections)
+    // Create the HTML to appear in the line popup box
+    var lines_array = [];
+    {% for countryconnection in object.country_primary.countryconnections_primary.all %}
+        {% if countryconnection.published and countryconnection.country_secondary == object.country_secondary %}
+            {% ifchanged countryconnection.country_secondary %}
+                var linePopupHtml = `<div class="map-popup">{{ countryconnection.country_primary }} and {{ countryconnection.country_secondary }}</div>`
+            {% endifchanged %}
+            linePopupHtml += `<a class="map-popup-link" href="{% url 'researchdata:countryconnection-detail' countryconnection.id %}" style="color: black;">{{ countryconnection.title | truncatechars:70 }}</a>`;
+            // Create polyline (line on map between two countries)
+            line = L.polyline(
+                [
+                    [
+                        {{ object.country_primary.latitude }},
+                        {{ object.country_primary.longitude }}
+                    ],
+                    [
+                        {{ object.country_secondary.latitude }},
+                        {{ object.country_secondary.longitude }}
+                    ]
+                ],
+                {color: '#FA0907', color: '#930909'}
+            ).bindPopup(linePopupHtml);
+            // Change opacity style of line when user hovers over it
+            line.on('mouseover', function(e){ e.target.setStyle({color: '#E72322'}); });
+            line.on('mouseout', function(e){ e.target.setStyle({color: '#930909'}); });
+            // Add line to array of lines
+            lines_array.push(line);
+        {% endif %}
+    {% endfor %}
+    L.layerGroup(lines_array).addTo(map);
+
+</script>
+
+{% endblock %}

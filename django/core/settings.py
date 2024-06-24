@@ -1,5 +1,6 @@
 import os
 import sys
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,11 +20,13 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     # 3rd Party
     'ckeditor',
+    'ckeditor_uploader',
     'embed_video',
     'debug_toolbar',
     # Custom apps
     'account',
     'general',
+    'pages',
     'researchdata',
 ]
 
@@ -33,6 +36,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -54,6 +58,7 @@ TEMPLATES = [
             ],
             'libraries': {
                 'settings_value': 'core.templatetags.settings_value',
+                'language_url': 'core.templatetags.language_url',
             }
         },
     },
@@ -87,13 +92,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 
-LANGUAGE_CODE = 'en-gb'
-
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'Europe/London'
-
-USE_I18N = False  # Set to True if using internationalisation (translations) in your project
-
+USE_I18N = True
 USE_TZ = True
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'core/locale'),
+)
 
 
 # Static files (CSS, JavaScript, Images)
@@ -116,9 +127,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # CKEditor
+# Image File uploads via CKEditor
+CKEDITOR_UPLOAD_PATH = 'cke_uploads/'  # will be based within MEDIA dir
+CKEDITOR_ALLOW_NONIMAGE_FILES = False  # only allow images to be uploaded
+CKEDITOR_IMAGE_BACKEND = 'ckeditor_uploader.backends.PillowBackend'
+CKEDITOR_THUMBNAIL_SIZE = (100, 100)
+CKEDITOR_FORCE_JPEG_COMPRESSION = True
+CKEDITOR_IMAGE_QUALITY = 90
+SILENCED_SYSTEM_CHECKS = ["ckeditor.W001"]
 # Configuration
 # For full list of configurations, see: https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
 # For full list of toolbar buttons, see: https://ckeditor.com/latest/samples/toolbarconfigurator/index.html#advanced
+SILENCED_SYSTEM_CHECKS = ["ckeditor.W001"]
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': [
@@ -151,6 +171,10 @@ CKEDITOR_CONFIGS = {
             {
                 'name': 'editing',
                 'items': ['Find', '-', 'Scayt']
+            },
+            {
+                'name': 'insert',
+                'items': ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
             },
             {
                 'name': 'views',

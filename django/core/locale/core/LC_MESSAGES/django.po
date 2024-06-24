@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-19 08:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: core/settings.py:100
+msgid "English"
+msgstr ""
+
+#: core/settings.py:101
+msgid "Spanish"
+msgstr ""
+
+#: core/templates/base.html:8
+msgid "ProjectTitle"
+msgstr ""
+
+#: core/templates/base.html:49
+msgid "ProjectTitlePrimary"
+msgstr ""
+
+#: core/templates/base.html:49
+msgid "ProjectTitleSecondary"
+msgstr ""
+
+#: core/templates/base.html:63
+msgid "About"
+msgstr ""
+
+#: core/templates/base.html:69
+msgid "Map"
+msgstr ""
+
+#: core/templates/base.html:75
+msgid "Team Members"
+msgstr ""
+
+#: core/templates/base.html:81
+msgid "Publications"
+msgstr ""
+
+#: core/templates/base.html:87
+msgid "Contact Us"
+msgstr ""
+
+#: core/templates/base.html:93
+msgid "More Resources"
+msgstr ""
+
+#: core/templates/base.html:117
+msgid "Privacy"
+msgstr ""
+
+#: core/templates/base.html:118
+msgid "Legal"
+msgstr ""
+
+#: core/templates/base.html:119
+msgid "Freedom of Information"
+msgstr ""
+
+#: core/templates/base.html:120
+msgid "Cookies"
+msgstr ""
+
+#: core/templates/base.html:121
+msgid "Accessibility"
+msgstr ""
