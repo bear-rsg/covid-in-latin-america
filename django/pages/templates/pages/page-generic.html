@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+
+{% if not page.published %}
+    <div id="pages-pagenotpublished">
+        <i class="fas fa-exclamation-triangle"></i> This page is not yet published. You can see it because you're logged in, but non-logged in users can't see this page until <a href="{% url 'admin:pages_page_change' object.id %}">you publish it</a>.
+    </div>
+{% endif %}
+
+<div id="pages-content" class="container">
+    {% include "pages/snippets/pages-content-by-language.html" with page=object %}
+</div>
+
+{% if user.is_authenticated %}
+    <a href="{{ object.admin_url }}" id="editinadmindashboardlink">
+        <i class="fas fa-pencil-alt"></i> Edit Page
+    </a>
+{% endif %}
+
+{% include "pages/snippets/pages-media-viewer.html" %}
+
+<script>$(document).ready(function(){ {% include "pages/snippets/pages.js" %} });</script>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-22 13:40+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: researchdata/templates/researchdata/map.html:105
+msgid "Map Textbox Information"
+msgstr ""
+"The map on this page locates some of the literary responses to Covid-19 in "
+"Latin America we have identified on social media and other digital "
+"platforms. Our focus is on texts in Spanish produced or circulated during "
+"the first two years of the health crisis. We aim to showcase how the "
+"pandemic was narrated in real-time, when it was happening; that is, before "
+"the inevitable hindsight perspective took hold and blurred our collective "
+"memory. The “connections” option traces the transnational character of the "
+"literary life that vigorously developed —centred in Latin America— when the "
+"virus was spreading throughout the world. As is the case with most archives, "
+"this online repository is incomplete. We will continue adding data as we "
+"find it and obtain permission to show it. The incompleteness, however, also "
+"functions as a poetic reminder of the time of Covid-19 and the many empty "
+"spaces it left."

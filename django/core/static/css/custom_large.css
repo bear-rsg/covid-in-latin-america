@@ -1,0 +1,66 @@
+@media (min-width: 992px) {
+
+    .display-large {
+        display: initial;
+    }
+
+    /* ---------- Navigation ---------- */
+
+    nav.navbar {
+        height: 4.5rem;
+    }
+
+    .navbar-brand {
+        padding-left: 0.3em;
+    }
+
+    .nav-link {
+        margin-left: 0.8em;
+        margin-right: 0.8em;
+        margin-top: 0.2em;
+        border-bottom: 0.3em solid transparent;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+        border-bottom: 0.3em solid #eb2f06;
+    }
+
+    #nav-search {
+        margin-left: 1em;
+    }
+
+    /* ---------- Main ---------- */
+
+    main {
+        margin-top: 4.5rem;
+        min-height: calc(100vh - 4rem);
+    }
+
+    /* ---------- Welcome ---------- */
+
+    #welcome-banner {
+        min-height: calc(100vh - 5rem);
+        padding: 0;
+    }
+
+    #welcome-banner-content {
+        width: 50%;
+        margin-top: -7em;
+        padding: 4em;
+    }
+
+    #welcome-banner-content-title {
+        font-size: 4.5em;
+    }
+
+    #welcome-banner-content-tagline {
+        font-size: 4.5em;
+    }
+
+    #welcome-banner-image {
+        width: calc(50% - 0.5em);
+        min-height: calc(100vh - 5rem);
+    }
+
+}

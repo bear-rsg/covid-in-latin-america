@@ -3,7 +3,7 @@ from .models import User
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 
-admin.site.site_header = 'Social Media Literary Responses to Covid-19 in Latin America: Admin Dashboard'
+admin.site.site_header = 'Viral Literature: Latin America - Admin Dashboard'
 admin.site.unregister(Group)
 
 

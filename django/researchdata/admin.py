@@ -1,10 +1,6 @@
 from django.contrib import admin
 from django.db.models import ManyToManyField, ForeignKey
-from django.utils import timezone
 from . import models
-
-
-admin.site.site_header = 'Social Media Literary Responses to Covid-19 in Latin America'
 
 
 # Sections:
@@ -73,15 +69,7 @@ def publish(modeladmin, request, queryset):
     """
     Sets all selected objects in queryset to published
     """
-    for object in queryset:
-        object.admin_published = True
-        # Set first published datetime, if applicable
-        try:
-            if object.meta_firstpublished_datetime is None:
-                object.meta_firstpublished_datetime = timezone.now()
-        except Exception:
-            pass
-        object.save()
+    queryset.update(published=True)
 
 
 publish.short_description = "Publish selected objects (will appear on public site)"
@@ -91,9 +79,7 @@ def unpublish(modeladmin, request, queryset):
     """
     Sets all selected objects in queryset to not published
     """
-    for object in queryset:
-        object.admin_published = False
-        object.save()
+    queryset.update(published=False)
 
 
 unpublish.short_description = "Unpublish selected objects (will not appear on public)"
@@ -125,6 +111,7 @@ class SocialMediaPostAdminView(GenericAdminView):
 
     list_display = ('id',
                     'name',
+                    'authors_list',
                     'literary_response',
                     'social_media_platform',
                     'country',
@@ -159,14 +146,36 @@ class AuthorAdminView(GenericAdminView):
     Customise the admin interface for Author model
     """
 
-    list_display = ('name', 'country')
+    list_display = ('name', 'country', 'posts_by_this_author_count')
     list_select_related = ('country',)
     list_filter = ('country',)
     search_fields = ('name', 'biography', 'country__name')
+    readonly_fields = ('posts_by_this_author',)
+
+
+@admin.register(models.Country)
+class CountryAdminView(GenericAdminView):
+    """
+    Customise the admin interface for Country model
+    """
+
+    list_display = ('name', 'longitude', 'latitude', 'posts_in_this_country_count', 'connections_to_this_country_count')
+    search_fields = ('name',)
+    readonly_fields = ('posts_in_this_country', 'connections_to_this_country',)
+
+
+@admin.register(models.CountryConnection)
+class CountryConnectionAdminView(GenericAdminView):
+    """
+    Customise the admin interface for CountryConnection model
+    """
+
+    list_display = ('title', 'country_primary', 'country_secondary', 'authors_list')
+    list_display_links = ('title',)
+    search_fields = ('title', 'description')
 
 
 # Register models that only need the GenericAdminView
-admin.site.register(models.Country, GenericAdminView)
 admin.site.register(models.LiteraryGenre, GenericAdminView)
 admin.site.register(models.LiteraryResponse, GenericAdminView)
 admin.site.register(models.SocialMediaPlatform, GenericAdminView)

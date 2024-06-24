@@ -1,0 +1,7 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% if LANGUAGE_CODE == 'es' %}
+    {{ page.content_es | safe }}
+{% elif LANGUAGE_CODE == 'en' %}
+    {{ page.content_en | safe }}
+{% endif %}
