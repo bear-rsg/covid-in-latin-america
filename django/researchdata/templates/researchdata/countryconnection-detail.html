@@ -69,7 +69,23 @@
         id: 'mapbox.dark',
     }).addTo(map);
 
-    // Lines (Country Connections)
+    // Country Connections
+    // Markers
+    L.layerGroup(markers_array = [
+        // Primary
+        L.marker(
+            [{{ object.country_primary.latitude }}, {{ object.country_primary.longitude }}]
+        ).bindPopup(
+            `<div class="map-popup">{{ object.country_primary.name }}</div>`
+        ),
+        // Secondary
+        L.marker(
+            [{{ object.country_secondary.latitude }}, {{ object.country_secondary.longitude }}]
+        ).bindPopup(
+            `<div class="map-popup">{{ object.country_secondary.name }}</div>`
+        )
+    ]).addTo(map);
+    // Lines
     // Create the HTML to appear in the line popup box
     var lines_array = [];
     {% for countryconnection in object.country_primary.countryconnections_primary.all %}

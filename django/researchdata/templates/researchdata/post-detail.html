@@ -6,31 +6,7 @@
 <div class="container">
     <h2>{{ object.title }}</h2>
 
-    <div id="post-detail-content">
-        <!-- Content: Text -->
-        {% if object.content_text %}
-            <div>{{ object.content_text | safe }}</div>
-        {% endif %}
-        <!-- Content: Video -->
-        {% if object.content_video %}
-            <div class="video-container">
-                {% video object.content_video as content_video %}
-                    {% video content_video %}
-                {% endvideo %}
-            </div>
-        {% endif %}
-        <!-- Content: Video (other) -->
-        {% if object.content_video_other %}
-            <div class="video-container">
-                {% video object.content_video_other as content_video_other %}
-                    {% video content_video_other %}
-                {% endvideo %}
-            </div>
-        {% endif %}
-    </div>
-
     <div id="post-detail-metadata">
-        <h3>Post Details</h3>
         <!-- Authors -->
         {% if object.authors_list %}
             <div>
@@ -103,8 +79,44 @@
         {% endif %}
     </div>
 
-    <h3>Posts in {{ object.country }}</h3>
-    <div id="post-detail-map" class="map-object map-object-small"></div>
+    <div id="post-detail-content">
+        <!-- Content: Text -->
+        {% if object.content_text %}
+            <div>{{ object.content_text | safe }}</div>
+        {% endif %}
+        <!-- Content: Video -->
+        {% if object.content_video %}
+            <div class="video-container">
+                {% video object.content_video as content_video %}
+                    {% video content_video %}
+                {% endvideo %}
+            </div>
+        {% endif %}
+        <!-- Content: Video (other) -->
+        {% if object.content_video_other %}
+            <div class="video-container">
+                {% video object.content_video_other as content_video_other %}
+                    {% video content_video_other %}
+                {% endvideo %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div id="post-detail-postsincountry">
+        <h3>Posts in {{ object.country }}</h3>
+        <div id="post-detail-map" class="map-object map-object-small"></div>
+    </div>
+
+    {% if other_posts_in_literary_response %}
+        <div id="post-detail-postsinliteraryresponse">
+            <h3>Other Posts in Literary Response: {{ object.literary_response }}</h3>
+            <ul>
+                {% for post in other_posts_in_literary_response %}
+                    <li><a href="{% url 'researchdata:post-detail' post.id %}">{{ post }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </div>
 
 {% if user.is_authenticated %}
