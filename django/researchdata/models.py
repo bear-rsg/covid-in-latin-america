@@ -82,6 +82,10 @@ class Country(models.Model):
         return queryset_as_html_admin_links('socialmediapost', self.socialmediaposts.all())
 
     @property
+    def published_connections_to_this_country_count(self):
+        return self.countryconnections_primary.filter(published=True).count() + self.countryconnections_secondary.filter(published=True).count()
+
+    @property
     def connections_to_this_country_count(self):
         return self.countryconnections_primary.all().count() + self.countryconnections_secondary.all().count()
 

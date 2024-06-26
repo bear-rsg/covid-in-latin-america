@@ -25,6 +25,11 @@ class PostDetailView(DetailView):
         .filter(published=True)\
         .prefetch_related('authors', 'literary_genres')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['other_posts_in_literary_response'] = self.object.literary_response.socialmediaposts.filter(published=True).exclude(id=self.object.id)
+        return context
+
 
 class CountryConnectionDetailView(DetailView):
     """
