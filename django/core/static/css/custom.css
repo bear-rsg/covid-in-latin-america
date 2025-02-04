@@ -439,16 +439,6 @@ main section {
     margin: 0.5rem 0 1.5rem 0;
 }
 
-#welcome-banner-content-tempmsg {
-    margin: 5em auto 0 auto;
-    padding: 1em;
-    font-size: 1em;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--color-white);
-    text-align: center;
-    width: 70%;
-}
-
 #welcome-banner-proceed {
     font-size: 3em;
     position: absolute;
@@ -481,7 +471,7 @@ main section {
 }
 
 .map-object-small {
-    height: 40vh;
+    height: 60vh;
 }
 
 div.leaflet-control-layers-expanded {
